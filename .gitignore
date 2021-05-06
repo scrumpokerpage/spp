@@ -1,16 +1,37 @@
-# Compiled class file
+# local configuration file (for Android sdk path, etc)
+local.properties
+
+# OSX files
+.DS_Store
+
+# Gradle artifacts
+/*gradle*
+!/build.gradle
+!/settings.gradle
+/build/
+
+# Maven artifacts
+src/gen/
+target/
+
+# Android artifacts
+*.apk
+*.ap_
+*.dex
+
+# Java compilation artifacts
 *.class
 
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
+# J2ME Mobile Tools
 .mtj.tmp/
 
-# Package Files #
+# NDK
+obj/
+
+# BlueJ
+*.ctxt
+
+# Packaging artifacts #
 *.jar
 *.war
 *.nar
@@ -19,5 +40,23 @@
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# Eclipse #
+/.classpath
+/.settings/
+/.project
+/.metadata
+bin/
+
+# IntelliJ #
+*.iml
+*.ipr
+*.iws
+*.uml
+.idea/
+out/
+
+# Misc
+*.log
+*.graphml
+coverage.db*
 hs_err_pid*
