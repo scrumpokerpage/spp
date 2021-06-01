@@ -11,8 +11,11 @@ local.properties
 /build/
 
 # Maven artifacts
-src/gen/
 target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/gen/
 
 # GitHub
 /.github/
@@ -43,20 +46,37 @@ obj/
 *.tar.gz
 *.rar
 
-# Eclipse #
-/.classpath
-/.settings/
-/.project
-/.metadata
-bin/
-
 # IntelliJ #
+.idea/
+out/
 *.iml
 *.ipr
 *.iws
 *.uml
-.idea/
-out/
+
+# Eclipse #
+/.apt_generated
+/.classpath
+/.settings
+/.project
+/.metadata
+/.factorypath
+/.springBeans
+/.sts4-cache
+bin/
+
+# NetBeans #
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# VS Code #
+.vscode/ 
 
 # Misc
 *.log
