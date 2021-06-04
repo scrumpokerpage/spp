@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="SppApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="spp-core" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.scrumpokerpage.spp.SppApplication" />
+    <option name="WORKING_DIRECTORY" value="file://%MODULE_WORKING_DIR%" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <option name="SHORTEN_COMMAND_LINE" value="MANIFEST" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
