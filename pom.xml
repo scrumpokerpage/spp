@@ -42,7 +42,7 @@
 	</modules>
 
 	<properties>
-		<java.version>16</java.version>
+		<java.version>15</java.version>
 		<kotlin.version>1.5.10</kotlin.version>
 		<springboot.version>2.5.0</springboot.version>
 	</properties>
