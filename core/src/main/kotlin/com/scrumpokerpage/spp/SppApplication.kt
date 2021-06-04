@@ -1,9 +1,21 @@
 package com.scrumpokerpage.spp
 
-import org.springframework.boot.autoconfigure.SpringBootApplication
+import com.scrumpokerpage.spp.domain.MasterDatabaseCreator
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.runApplication
+import org.springframework.context.annotation.ComponentScan
+import org.springframework.context.annotation.FilterType
 
-@SpringBootApplication
+@EnableAutoConfiguration
+@ComponentScan(
+	basePackages = ["com.scrumpokerpage.spp"],
+	excludeFilters = [
+		ComponentScan.Filter(
+			type = FilterType.ASSIGNABLE_TYPE,
+			classes = [ MasterDatabaseCreator::class ]
+		)
+	]
+)
 class SppApplication
 
 fun main(args: Array<String>) {
