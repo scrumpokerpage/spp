@@ -1,0 +1,229 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet author="lbuchholz79" id="1622834274598-1">
+        <createSequence incrementBy="1" sequenceName="hibernate_sequence" startValue="1"/>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-2">
+        <createTable tableName="card">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="cardPK"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="special" type="VARCHAR(255)"/>
+            <column name="value" type="DOUBLE"/>
+            <column name="deck_id" type="INT"/>
+            <column name="rank" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-3">
+        <createTable tableName="card_cover">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="card_coverPK"/>
+            </column>
+            <column name="image" type="VARCHAR(255)"/>
+            <column name="card_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-4">
+        <createTable tableName="deck">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="deckPK"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-5">
+        <createTable tableName="deck_card_covers">
+            <column name="deck_cover_id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="card_cover_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="card_id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-6">
+        <createTable tableName="deck_cover">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="deck_coverPK"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="shared" type="BOOLEAN"/>
+            <column name="creator_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-7">
+        <createTable tableName="estimate">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="estimatePK"/>
+            </column>
+            <column name="date" type="TIMESTAMP"/>
+            <column name="meeting_id" type="INT"/>
+            <column name="card_id" type="INT"/>
+            <column name="item_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-8">
+        <createTable tableName="item">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="itemPK"/>
+            </column>
+            <column name="ext_reference" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="type" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-9">
+        <createTable tableName="meeting_items">
+            <column name="meeting_id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="item_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rank" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-10">
+        <createTable tableName="meeting_rounds">
+            <column name="meeting_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="round_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-11">
+        <createTable tableName="planning_meeting">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="planning_meetingPK"/>
+            </column>
+            <column name="date" type="TIMESTAMP"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="allow_covers" type="BOOLEAN"/>
+            <column name="allow_no_vote" type="BOOLEAN"/>
+            <column name="deck_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-12">
+        <createTable tableName="theme">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="themePK"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-13">
+        <createTable tableName="user_vote">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="user_votePK"/>
+            </column>
+            <column name="date" type="TIMESTAMP"/>
+            <column name="card_id" type="INT"/>
+            <column name="round_id" type="INT"/>
+            <column name="user_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-14">
+        <createTable tableName="voting_round">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="voting_roundPK"/>
+            </column>
+            <column name="end_date" type="TIMESTAMP"/>
+            <column name="allow_covers" type="BOOLEAN"/>
+            <column name="allow_no_vote" type="BOOLEAN"/>
+            <column name="start_date" type="TIMESTAMP"/>
+            <column name="item_id" type="INT"/>
+            <column name="meeting_id" type="INT"/>
+            <column name="deck_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-15">
+        <addColumn tableName="user">
+            <column name="cover_id" type="integer"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-16">
+        <addColumn tableName="user">
+            <column name="theme_id" type="integer"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-17">
+        <addUniqueConstraint columnNames="card_cover_id" constraintName="UK_53u8q4w0ek76gkaeobk05b41r" tableName="deck_card_covers"/>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-18">
+        <addUniqueConstraint columnNames="round_id" constraintName="UK_ctfiywxochhrha3h3mgflib16" tableName="meeting_rounds"/>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-19">
+        <addForeignKeyConstraint baseColumnNames="card_id" baseTableName="deck_card_covers" constraintName="FK1011wjk485acrsa3jq5rwsaoi" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="card" validate="true"/>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-20">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_vote" constraintName="FK2q50phs57njg6g0qvha1r8703" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-21">
+        <addForeignKeyConstraint baseColumnNames="meeting_id" baseTableName="meeting_rounds" constraintName="FK43fwoxqguo7vgm9q1ogmp971l" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="planning_meeting" validate="true"/>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-22">
+        <addForeignKeyConstraint baseColumnNames="deck_id" baseTableName="card" constraintName="FK6k0or7dj9m5qhnshnk9fpg8r1" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="deck" validate="true"/>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-23">
+        <addForeignKeyConstraint baseColumnNames="card_id" baseTableName="card_cover" constraintName="FK7gie4dna4m84muvd106ue5fj" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="card" validate="true"/>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-24">
+        <addForeignKeyConstraint baseColumnNames="cover_id" baseTableName="user" constraintName="FK8g7qecl5q1rlxxnylx0dkkjxb" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="deck_cover" validate="true"/>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-25">
+        <addForeignKeyConstraint baseColumnNames="card_id" baseTableName="user_vote" constraintName="FK8m8sowfv5ek8r4ybct34v0ur1" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="card" validate="true"/>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-26">
+        <addForeignKeyConstraint baseColumnNames="round_id" baseTableName="user_vote" constraintName="FK9t8frwd8om1n73751s8hmk54p" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="voting_round" validate="true"/>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-27">
+        <addForeignKeyConstraint baseColumnNames="creator_id" baseTableName="deck_cover" constraintName="FKakd5s5789hw7jopc0bs1vhv55" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-28">
+        <addForeignKeyConstraint baseColumnNames="card_cover_id" baseTableName="deck_card_covers" constraintName="FKbf51ex3x55yvbldsl5xla2qe4" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="card_cover" validate="true"/>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-29">
+        <addForeignKeyConstraint baseColumnNames="card_id" baseTableName="estimate" constraintName="FKc3uaatblykk5mo3pfqtapmg3e" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="card" validate="true"/>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-30">
+        <addForeignKeyConstraint baseColumnNames="round_id" baseTableName="meeting_rounds" constraintName="FKd41i42a7ec3s81tyb16l5eh5p" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="voting_round" validate="true"/>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-31">
+        <addForeignKeyConstraint baseColumnNames="item_id" baseTableName="voting_round" constraintName="FKduuywe15otw9vqcib6lvlfjpr" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="item" validate="true"/>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-32">
+        <addForeignKeyConstraint baseColumnNames="deck_id" baseTableName="planning_meeting" constraintName="FKetyxirdtdepu62c8d7akbj7a3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="deck" validate="true"/>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-33">
+        <addForeignKeyConstraint baseColumnNames="theme_id" baseTableName="user" constraintName="FKfv6kkn88ic15po0d85929en2n" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="theme" validate="true"/>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-34">
+        <addForeignKeyConstraint baseColumnNames="meeting_id" baseTableName="estimate" constraintName="FKg5mmp6lbj2mg170y7wsq6lpgb" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="planning_meeting" validate="true"/>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-35">
+        <addForeignKeyConstraint baseColumnNames="item_id" baseTableName="meeting_items" constraintName="FKk6deh0w96pcxldfs5u9ueii23" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="item" validate="true"/>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-36">
+        <addForeignKeyConstraint baseColumnNames="deck_cover_id" baseTableName="deck_card_covers" constraintName="FKloxlfwvvtbyg0r5fnhwi8heg5" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="deck_cover" validate="true"/>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-37">
+        <addForeignKeyConstraint baseColumnNames="item_id" baseTableName="estimate" constraintName="FKmdyvhew1doa6y8i7ct6lotwvd" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="item" validate="true"/>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-38">
+        <addForeignKeyConstraint baseColumnNames="meeting_id" baseTableName="meeting_items" constraintName="FKpdr7tcrk94gdelt7kts0oeoky" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="planning_meeting" validate="true"/>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-39">
+        <addForeignKeyConstraint baseColumnNames="deck_id" baseTableName="voting_round" constraintName="FKplvbwm6aefc78u1ebitiugf5p" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="deck" validate="true"/>
+    </changeSet>
+    <changeSet author="lbuchholz79" id="1622834274598-40">
+        <addForeignKeyConstraint baseColumnNames="meeting_id" baseTableName="voting_round" constraintName="FKq39nwtpdyw82eo4js6riiojj9" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="planning_meeting" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
